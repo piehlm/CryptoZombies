@@ -1,5 +1,7 @@
 pragma solidity ^0.4.25;
+
 import "./zombiefactory.sol";
+
 contract KittyInterface {
   function getKitty(uint256 _id) external view returns (
     bool isGestating,
@@ -14,6 +16,7 @@ contract KittyInterface {
     uint256 genes
   );
 }
+
 contract ZombieFeeding is ZombieFactory {
 
   KittyInterface kittyContract;
