@@ -92,6 +92,19 @@
         });
     }
 
+    function attach(zombieId, targetId) {
+      $("#txStatus").text("Attacking a zombie. This may take a while...");
+      return cryptoZombies.methods.attach(zombieId, targetId)
+        .send({ from: userAccount })
+        .on("receipt", function (receipt) {
+          $("#txStatus").text("Attached a Zombie!");
+          getZombiesByOwner(userAccount).then(displayZombies);
+        })
+        .on("error", function (error) {
+          $("#txStatus").text(error);
+        });
+    }
+    
     function levelUp(zombieId) {
       $("#txStatus").text("Leveling up your zombie...");
       return cryptoZombies.methods.levelUp(zombieId)
